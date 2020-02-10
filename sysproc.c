@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "readcount.h"
 
 int
 sys_fork(void)
@@ -88,4 +89,10 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int
+sys_getreadcount(void)
+{
+  return rc_count();
 }
